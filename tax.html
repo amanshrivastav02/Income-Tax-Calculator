@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Tax Calculator</title>
+    <link rel="stylesheet" href="tax.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Income Tax Calculator</h1>
+    <table>
+        <tr>
+            <th>Income Range</th>
+            <th>Tax Rate</th>
+        </tr>
+        <tr>
+            <td>Rs 40000 - Rs 49999</td>
+            <td>10%</td>
+        </tr>
+        <tr>
+            <td>Rs 50000 - Rs 79999</td>
+            <td>20%</td>
+        </tr>
+        <tr>
+            <td>Rs 80000 - Rs 119999</td>
+            <td>25%</td>
+        </tr>
+        <tr>
+            <td>More than Rs 120000</td>
+            <td>30%</td>
+        </tr>
+        
+    </table>
+
+    <form >
+        <label for="income">Enter your income:</label>
+        <input type="number" id="income" name="income" required>
+        <button type="submit">Calculate Tax</button>
+    </form>
+    <div id="result">
+        <!-- Tax calculation result will be displayed here -->
+        <p id="taxAmount"></p>
+    </div>
+    </div>
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const income = parseFloat(document.getElementById('income').value);
+            let taxAmount = 0;
+
+            if (income >= 40000 && income <= 49999) {
+                taxAmount = income * 0.10;
+            } else if (income >= 50000 && income <= 79999) {
+                taxAmount = income * 0.20;
+            } else if (income >= 80000 && income <= 119999) {
+                taxAmount = income * 0.25;
+            } else if (income > 120000) {
+                taxAmount = income * 0.30;
+            }
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.classList.add('show');
+            document.getElementById('taxAmount').textContent = `Your tax amount is: Rs ${taxAmount.toFixed(2)}`;
+        });
+    </script>
+
+    
+        
+
+</body>
+</html>
